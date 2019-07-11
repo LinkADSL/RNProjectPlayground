@@ -157,7 +157,7 @@ export default class Gaming extends Component {
       <View style={styles.root}>
         <Animated.View style={[styles.playerWrapper, {transform: [{translateY}]}]}>
           <View style={styles.player}>
-            <View style={styles.avatar}/>
+            <View style={styles.avatar} />
             <Text>广州 奥迪</Text>
             <View style={styles.coinWrapper}>
               <Text>180</Text>
@@ -170,7 +170,7 @@ export default class Gaming extends Component {
             </View>
           </View>
           <View style={styles.player}>
-            <View style={styles.avatar}/>
+            <View style={styles.avatar} />
             <Text>广州 奥迪</Text>
             <View style={styles.coinWrapper}>
               <Text>180</Text>

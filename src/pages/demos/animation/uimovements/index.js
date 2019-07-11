@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component, PureComponent } from 'react';
 import {
   View,
   Text,
@@ -9,22 +9,22 @@ import {
   TouchableOpacity,
   Easing,
   Image,
-} from 'react-native'
-import { peoples } from './mock'
-import styles from './styles'
+} from 'react-native';
+import { peoples } from './mock';
+import styles from './styles';
 
-const { width: screenW, height: screenH } = Dimensions.get('window')
-const TargetHeight = 300
-const TargetScale = 3
-const TargetLeft = (screenW - 40 * TargetScale) / 2
-const TargetTop = 70
+const { width: screenW, height: screenH } = Dimensions.get('window');
+const TargetHeight = 300;
+const TargetScale = 3;
+const TargetLeft = (screenW - 40 * TargetScale) / 2;
+const TargetTop = 70;
 
 export default class extends PureComponent {
   state = {
     activeCellIndex: null, // 激活的cell下标
     isHeadAnimatedDone: false, // 头像动画是否完毕
     photoOrigin: {x: null, y: null}, // 当前激活的照片原始位置
-    activePhotoIndex: null, 
+    activePhotoIndex: null,
   }
   cellAvatarRefs = [] // 所有头像的 ref 引用
   avatarOrigin = {x: null, y: null} // 当前激活的头像初始位置
@@ -35,7 +35,7 @@ export default class extends PureComponent {
 
   detailSpreadValue = new Animated.Value(0) // 个人详情展开动画值
   photoPositionValue = new Animated.ValueXY() // 照片位置动画值
-  
+
   // ======================= Head paralle animations - Start =======================
 
   get headParallelStartAnimation() {
@@ -49,8 +49,8 @@ export default class extends PureComponent {
       }),
       Animated.timing(this.avatarPositionValue.y, {
         toValue: TargetTop,
-      })
-    ]
+      }),
+    ];
   }
 
   get headTextParallelStartAnimation() {
@@ -62,8 +62,8 @@ export default class extends PureComponent {
       Animated.timing(this.detailSpreadValue, {
         toValue: 1,
         delay: 150,
-      })
-    ]
+      }),
+    ];
   }
 
   /**
@@ -72,12 +72,12 @@ export default class extends PureComponent {
   handlePressCell = index => {
     this.cellAvatarRefs[index].measure((x, y, width, height, pageX, pageY) => {
       // 初始位置跟动画值
-      this.avatarOrigin = {x: pageX, y: pageY}
-      this.avatarPositionValue.setValue({x: pageX, y: pageY})
+      this.avatarOrigin = {x: pageX, y: pageY};
+      this.avatarPositionValue.setValue({x: pageX, y: pageY});
 
       // 记录激活的cell下标
-      this.setState({activeCellIndex: index}, this.startHeadParalleAnimation)
-    })
+      this.setState({activeCellIndex: index}, this.startHeadParalleAnimation);
+    });
   }
 
   /**
@@ -85,8 +85,8 @@ export default class extends PureComponent {
    */
   startHeadParalleAnimation = () => {
     Animated.parallel(this.headParallelStartAnimation).start(() => {
-      this.setState({isHeadAnimatedDone: true}, this.startHeadTextParalleAnimation)
-    })
+      this.setState({isHeadAnimatedDone: true}, this.startHeadTextParalleAnimation);
+    });
   }
 
   /**
@@ -105,9 +105,9 @@ export default class extends PureComponent {
       }),
       Animated.timing(this.avatarPositionValue.y, {
         toValue: this.avatarOrigin.y,
-        duration: 250
-      })
-    ]
+        duration: 250,
+      }),
+    ];
   }
 
   /**
@@ -119,13 +119,13 @@ export default class extends PureComponent {
     }, () => {
       Animated.parallel(this.headParallelEndAnimation).start(() => {
         // 恢复默认值
-        this.headTextScaleXValue.setValue(0)
-        this.detailSpreadValue.setValue(0)
+        this.headTextScaleXValue.setValue(0);
+        this.detailSpreadValue.setValue(0);
 
-        this.avatarOrigin = {x: null, y: null}
-        this.setState({ activeCellIndex: null })
-      })
-    })
+        this.avatarOrigin = {x: null, y: null};
+        this.setState({ activeCellIndex: null });
+      });
+    });
   }
 
   // ======================= Photo animations =======================
@@ -137,9 +137,9 @@ export default class extends PureComponent {
       photoOrigin: { x, y },
       activePhotoIndex: index,
     }, () => {
-      this.photoPositionValue.setValue({ x: 0, y: 0 })
-      Animated.spring(this.photoPositionValue, { toValue: 1 }).start()
-    })
+      this.photoPositionValue.setValue({ x: 0, y: 0 });
+      Animated.spring(this.photoPositionValue, { toValue: 1 }).start();
+    });
   }
 
   /**
@@ -152,14 +152,14 @@ export default class extends PureComponent {
     }).start(() => {
       this.setState({
         photoOrigin: { x: null, y: null },
-        activePhotoIndex: null
-      })
-    })
+        activePhotoIndex: null,
+      });
+    });
   }
 
 
   renderPeopleCell = (item, key) => {
-    const isActive = this.state.activeCellIndex == key
+    const isActive = this.state.activeCellIndex == key;
 
     return (
       <TouchableOpacity
@@ -175,7 +175,7 @@ export default class extends PureComponent {
         />
         <Text>{item.name}</Text>
       </TouchableOpacity>
-    )
+    );
   }
 
   renderPhotoItem = (item, key) => {
@@ -187,80 +187,82 @@ export default class extends PureComponent {
         isShowPhoto={this.state.activePhotoIndex === key}
         onSelect={this.handleSelectGallery}
       />
-    )
+    );
   }
 
   render() {
-    const { activeCellIndex, activePhotoIndex, isHeadAnimatedDone, photoOrigin } = this.state
-    const activePeople = peoples[activeCellIndex]
-  
+    const {
+      activeCellIndex, activePhotoIndex, isHeadAnimatedDone, photoOrigin,
+    } = this.state;
+    const activePeople = peoples[activeCellIndex];
+
     // header背景
     const headCoverAnimatedStyle = {
       height: this.headWrapperValue.interpolate({
         inputRange: [0, 1],
         outputRange: [64, TargetHeight],
-      })
-    }
+      }),
+    };
     // 头像
     const avatarAnimatedStyle = {
       left: this.avatarPositionValue.x,
       top: this.avatarPositionValue.y,
       width: this.headWrapperValue.interpolate({
         inputRange: [0, 1],
-        outputRange: [40, TargetScale * 40]
+        outputRange: [40, TargetScale * 40],
       }),
       height: this.headWrapperValue.interpolate({
         inputRange: [0, 1],
-        outputRange: [40, TargetScale * 40]
+        outputRange: [40, TargetScale * 40],
       }),
       borderRadius: this.headWrapperValue.interpolate({
         inputRange: [0, 1],
-        outputRange: [20, TargetScale * 20]
+        outputRange: [20, TargetScale * 20],
       }),
-      opacity: activeCellIndex === null ? 0 : 1
-    }
+      opacity: activeCellIndex === null ? 0 : 1,
+    };
     // 原始背景透明度
     const originBgAnimatedStyle = {
       opacity: this.headWrapperValue.interpolate({
         inputRange: [0, 1],
         outputRange: [1, 0],
-      })
-    }
+      }),
+    };
     // 个人简介
     const spreadCoverAnimatedStyle = {
       width: this.detailSpreadValue.interpolate({
         inputRange: [0, 1],
-        outputRange: [screenW, 0]
-      })
-    }
+        outputRange: [screenW, 0],
+      }),
+    };
     // 照片
     const photoAnimatedStyle = {
       width: this.photoPositionValue.x.interpolate({
         inputRange: [0, 1],
-        outputRange: [100, 260]
+        outputRange: [100, 260],
       }),
       height: this.photoPositionValue.y.interpolate({
         inputRange: [0, 1],
-        outputRange: [100, 260]
+        outputRange: [100, 260],
       }),
       left: this.photoPositionValue.x.interpolate({
         inputRange: [0, 1],
-        outputRange: [photoOrigin.x, (screenW - 260) / 2]
+        outputRange: [photoOrigin.x, (screenW - 260) / 2],
       }),
       top: this.photoPositionValue.y.interpolate({
         inputRange: [0, 1],
-        outputRange: [photoOrigin.y, (screenH - 260) / 2]
+        outputRange: [photoOrigin.y, (screenH - 260) / 2],
       }),
-      overflow: 'visible'
-    }
+      overflow: 'visible',
+    };
     // 查看图片时的背景
     const photoCoverAnimatedStyle = [
       StyleSheet.absoluteFill,
       {
         backgroundColor: 'rgba(255,255,255,0.4)',
-        opacity: this.photoPositionValue.x
-      }
-    ]
+        opacity: this.photoPositionValue.x,
+      },
+    ];
 
     return (
       <View style={styles.root}>
@@ -270,23 +272,27 @@ export default class extends PureComponent {
         </Animated.ScrollView>
         <View
           style={StyleSheet.absoluteFill}
-          pointerEvents={activeCellIndex !== null ? "auto" : "none"}
+          pointerEvents={activeCellIndex !== null ? 'auto' : 'none'}
         >
           <Animated.View style={[styles.head, headCoverAnimatedStyle]}>
-            {activeCellIndex !== null && 
+            {activeCellIndex !== null &&
             <Animated.View style={[styles.backBtn, {opacity: this.headWrapperValue}]}>
               <TouchableOpacity
                 activeOpacity={0.75}
-                style={[StyleSheet.absoluteFill, {justifyContent: 'center', alignItems:  'center'}]}
+                style={[StyleSheet.absoluteFill, {justifyContent: 'center', alignItems: 'center'}]}
                 onPress={this.handleHideAnimation}
               >
                 <Text style={{color: '#fff', fontSize: 17, fontWeight: 'bold'}}>返回</Text>
               </TouchableOpacity>
             </Animated.View>
             }
-            {isHeadAnimatedDone && 
+            {isHeadAnimatedDone &&
               <Animated.View style={[styles.textWrapper, {opacity: 1}, {transform: [{scaleX: this.headTextScaleXValue}]}]}>
-                <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 5, color: '#fff'}}>{activePeople.name}</Text>
+                <Text style={{
+fontSize: 18, fontWeight: 'bold', marginBottom: 5, color: '#fff',
+}}
+                >{activePeople.name}
+                </Text>
                 <Text style={{fontSize: 14, color: '#fff'}}>{activePeople.position}</Text>
               </Animated.View>
             }
@@ -310,7 +316,7 @@ export default class extends PureComponent {
                   <Text style={styles.text}>住址：{activePeople.address}</Text>
                 </View>
                 <Text style={{fontSize: 16, fontWeight: 'bold', marginTop: 16}}>关于生活</Text>
-                <Animated.View style={[styles.spreadCover, spreadCoverAnimatedStyle]}/>
+                <Animated.View style={[styles.spreadCover, spreadCoverAnimatedStyle]} />
               </View>
               <ScrollView
                 horizontal
@@ -325,9 +331,9 @@ export default class extends PureComponent {
           {activePhotoIndex !== null &&
             <View
               style={StyleSheet.absoluteFill}
-              pointerEvents={activePhotoIndex !== null ? "auto" : "none"}
+              pointerEvents={activePhotoIndex !== null ? 'auto' : 'none'}
             >
-              <Animated.View style={photoCoverAnimatedStyle}/>
+              <Animated.View style={photoCoverAnimatedStyle} />
               <TouchableOpacity
                 activeOpacity={1}
                 style={StyleSheet.absoluteFill}
@@ -342,7 +348,7 @@ export default class extends PureComponent {
           }
         </View>
       </View>
-    )
+    );
   }
 }
 
@@ -351,38 +357,40 @@ class PhotoItem extends PureComponent {
   scaleValue = new Animated.Value(0)
 
   componentDidMount() {
-    this.startAnimation()
+    this.startAnimation();
   }
 
   startAnimation = () => {
     Animated.spring(this.scaleValue, {
       toValue: 1,
-      duration: 200
-    }).start()
+      duration: 200,
+    }).start();
   }
 
   handlePress = () => {
-    const { onSelect, index } = this.props
+    const { onSelect, index } = this.props;
     this.photoRef.measure((x, y, width, height, pageX, pageY) => {
-      onSelect && onSelect({x: pageX, y: pageY, width, height}, index)
-    })
+      onSelect && onSelect({
+        x: pageX, y: pageY, width, height,
+      }, index);
+    });
   }
 
   render() {
-    const { photo } = this.props
+    const { photo } = this.props;
 
     return (
       <Animated.View
         style={[styles.photoItem, {transform: [{scale: this.scaleValue}]}, this.props.isShowPhoto && {opacity: 0}]}
       >
-        <TouchableOpacity 
+        <TouchableOpacity
           style={StyleSheet.absoluteFill}
           activeOpacity={0.75}
           onPress={this.handlePress}
         >
-          <Image source={photo} style={{height: 100, width: 100}} ref={r => this.photoRef = r} onLayout={()=>{}}/>
+          <Image source={photo} style={{height: 100, width: 100}} ref={r => this.photoRef = r} onLayout={() => {}} />
         </TouchableOpacity>
       </Animated.View>
-    )
+    );
   }
 }

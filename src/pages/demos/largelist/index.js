@@ -1,7 +1,7 @@
 /*
  * @Description: 带索引分组列表测试
- * @Author: cookiej 
- * @Date: 2018-05-15 09:31:25 
+ * @Author: cookiej
+ * @Date: 2018-05-15 09:31:25
  * @Last Modified by: cookiej
  * @Last Modified time: 2018-05-16 11:22:03
  */
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: StyleSheet.hairlineWidth,
     justifyContent: 'center',
-  }
-})
+  },
+});
 
 export default class SectionListDemo extends PureComponent {
   render() {
@@ -48,16 +48,16 @@ export default class SectionListDemo extends PureComponent {
           style={styles.btn}
           onPress={() => CJNavigation.push('sectionlist/largelist')}
         >
-        <Text>基于LargeList实现</Text>
+          <Text>基于LargeList实现</Text>
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={1}
           style={styles.btn}
           onPress={() => CJNavigation.push('sectionlist/listview')}
         >
-        <Text>基于ListView实现</Text>
+          <Text>基于ListView实现</Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }

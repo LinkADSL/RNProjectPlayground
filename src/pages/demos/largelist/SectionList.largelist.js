@@ -1,7 +1,7 @@
 /*
  * @Description: 基于react-native-largelist来实现带索引分组列表
- * @Author: cookiej 
- * @Date: 2018-05-15 09:31:25 
+ * @Author: cookiej
+ * @Date: 2018-05-15 09:31:25
  * @Last Modified by: cookiej
  * @Last Modified time: 2018-05-16 11:22:03
  */
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     bottom: 80,
     width: Platform.OS === 'android' ? 80 : 30,
     backgroundColor: 'transparent',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   item: {
     height: LETTER_HEIGHT,
@@ -74,10 +74,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-})
+});
 
 export default class extends PureComponent {
-  
+
   lastSelectedIndex = null;
   animationValue = new Animated.Value(-SCREEN_HEIGHT);
   state = {
@@ -118,13 +118,13 @@ export default class extends PureComponent {
             );
           })}
         </View>
-      )
+      );
     }
     return (
       <View style={styles.row}>
         <Text>{`Row_${row}`}</Text>
       </View>
-    )
+    );
   };
 
   renderSection = section => {
@@ -144,26 +144,24 @@ export default class extends PureComponent {
     const components = [];
     for (let i = 0; i < SAMPLE_COUNT; i++) {
       const scale = this.animationValue.interpolate({
-        inputRange: [i-3, i-2, i-1, i, i+1, i+2, i+3],
+        inputRange: [i - 3, i - 2, i - 1, i, i + 1, i + 2, i + 3],
         outputRange: [1, 1.2, 1.5, 1.7, 1.5, 1.2, 1],
-        extrapolate: 'clamp'
+        extrapolate: 'clamp',
       });
       const translateX = this.animationValue.interpolate({
-        inputRange: [i-4, i-3, i-2, i-1, i, i+1, i+2, i+3, i+4],
+        inputRange: [i - 4, i - 3, i - 2, i - 1, i, i + 1, i + 2, i + 3, i + 4],
         outputRange: [0, -15, -25, -30, -30, -30, -25, -15, 0],
-        extrapolate: 'clamp'
+        extrapolate: 'clamp',
       });
       const opacity = this.animationValue.interpolate({
-        inputRange: [i-4, i-3, i-2, i-1, i, i+1, i+2, i+3, i+4],
+        inputRange: [i - 4, i - 3, i - 2, i - 1, i, i + 1, i + 2, i + 3, i + 4],
         outputRange: [1, 0.9, 0.5, 0.2, 1, 0.2, 0.5, 0.9, 1],
-        extrapolate: 'clamp'
+        extrapolate: 'clamp',
       });
 
-      components.push(
-        <Animated.View key={`Indicator_${i}`} style={[styles.item, {transform: [{scale}, {translateX}], opacity}]} pointerEvents="none">
-          <Text style={{backgroundColor: 'transparent', fontSize: 12}}>{i === 0 ? '推荐' : i}</Text>
-        </Animated.View>
-      );
+      components.push(<Animated.View key={`Indicator_${i}`} style={[styles.item, {transform: [{scale}, {translateX}], opacity}]} pointerEvents="none">
+        <Text style={{backgroundColor: 'transparent', fontSize: 12}}>{i === 0 ? '推荐' : i}</Text>
+      </Animated.View>);
     }
     return components;
   };
@@ -172,7 +170,7 @@ export default class extends PureComponent {
     const { indicatorHeight, originY } = this.state;
     const ev = evt.nativeEvent.touches[0];
     let index = Math.floor((ev.pageY - originY) / LETTER_HEIGHT);
-    
+
     if (this.lastSelectedIndex !== index) {
       if (index < 0) {
         index = 0;
@@ -225,6 +223,6 @@ export default class extends PureComponent {
           {this.renderIndicatorView()}
         </View>
       </View>
-    )
+    );
   }
 }

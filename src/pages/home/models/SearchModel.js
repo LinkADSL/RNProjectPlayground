@@ -73,4 +73,4 @@ const Search = types.model('Search', {
 
 export default {
   setup: () => Search.create(),
-}
+};

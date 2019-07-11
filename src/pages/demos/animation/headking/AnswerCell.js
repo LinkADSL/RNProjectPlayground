@@ -96,9 +96,9 @@ export default class AnswerCell extends Component {
           onPress={this.handlePress}
           style={styles.root}
         >
-          <Image style={[styles.icon, leftIcon && {backgroundColor: leftIcon}]}/>
+          <Image style={[styles.icon, leftIcon && {backgroundColor: leftIcon}]} />
           <Text>{this.props.title}</Text>
-          <Image style={[styles.icon, rightIcon && {backgroundColor: rightIcon}]}/>
+          <Image style={[styles.icon, rightIcon && {backgroundColor: rightIcon}]} />
         </TouchableOpacity>
       </Animated.View>
     );

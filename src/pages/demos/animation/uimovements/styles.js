@@ -1,6 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
 
-const { width: screenW } = Dimensions.get('window')
+const { width: screenW } = Dimensions.get('window');
 
 export default StyleSheet.create({
   root: {
@@ -17,7 +17,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#ebebeb'
+    borderBottomColor: '#ebebeb',
   },
   avatar: {
     height: 40,
@@ -59,7 +59,7 @@ export default StyleSheet.create({
     width: 100,
     borderRadius: 6,
     marginRight: 16,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   animatedPhotoItem: {
     height: 100,
@@ -68,7 +68,7 @@ export default StyleSheet.create({
     shadowOffset: {width: 2, height: 2},
     shadowColor: 'black',
     shadowOpacity: 0.75,
-    shadowRadius: 10
+    shadowRadius: 10,
   },
   backBtn: {
     height: 44,
@@ -81,5 +81,5 @@ export default StyleSheet.create({
     fontSize: 14,
     color: '#666',
     marginBottom: 2,
-  }
-})
+  },
+});

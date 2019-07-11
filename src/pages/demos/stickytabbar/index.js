@@ -1,7 +1,7 @@
 /*
  * @Description: 商城类App首页粘性tabbar
- * @Author: cookiej 
- * @Date: 2018-05-25 10:26:00 
+ * @Author: cookiej
+ * @Date: 2018-05-25 10:26:00
  * @Last Modified by: cookiej
  * @Last Modified time: 2018-05-25 15:45:43
  */
@@ -16,7 +16,7 @@ import {
   UIManager,
   findNodeHandle,
   Animated,
-  Easing
+  Easing,
 } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -24,19 +24,19 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5'
+    backgroundColor: '#f5f5f5',
   },
   banner: {
     height: 240,
-    backgroundColor: '#ccc'
+    backgroundColor: '#ccc',
   },
   menus: {
     height: 180,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   tabBar: {
     height: 50,
-    backgroundColor: '#ccc'
+    backgroundColor: '#ccc',
   },
   tabBarItem: {
     height: 50,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     height: 30,
     paddingHorizontal: 15,
     justifyContent: 'center',
-    backgroundColor: '#eee'
+    backgroundColor: '#eee',
   },
   listCell: {
     height: 80,
@@ -64,12 +64,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 8,
     width: 20,
-  }
+  },
 });
 
 export default class extends PureComponent {
   tabBarItems = [
-    '新闻', '广州', '娱乐', '今日头条', '直播间', '汽车', '社会', '视频', '图片', '吐槽'
+    '新闻', '广州', '娱乐', '今日头条', '直播间', '汽车', '社会', '视频', '图片', '吐槽',
   ];
   state = {
     tabBarObj: [],
@@ -92,9 +92,9 @@ export default class extends PureComponent {
     let originY = 0;
 
     for (const tabBarItem of this.tabBarItems) {
-      const random = parseInt(Math.random() * 5) + 1
+      const random = parseInt(Math.random() * 5) + 1;
       const arr = new Array(random);
-      const list = [...arr.map(() => 0)]
+      const list = [...arr.map(() => 0)];
 
       tabBarObj.push({
         list,
@@ -102,7 +102,7 @@ export default class extends PureComponent {
       });
 
       // 保存每个分组的 originY
-      this.sectionTitleOriginYs.push(originY)
+      this.sectionTitleOriginYs.push(originY);
       originY += 30 + list.length * 80;
     }
     this.setState({ tabBarObj });
@@ -158,7 +158,7 @@ export default class extends PureComponent {
       Animated.timing(this.indicatorOriginX, {
         toValue: animatedX,
         duration: 200,
-        easing: Easing.linear
+        easing: Easing.linear,
       }).start();
 
       let offsetX = x - SCREEN_WIDTH / 2;
@@ -166,12 +166,12 @@ export default class extends PureComponent {
         offsetX = 0;
       } else if (this.tabBarContentSizeX - x - width / 2 < SCREEN_WIDTH / 2) {
         // 不足以滚动到中间，滚动到尾部即可
-        this.tabBar && this.tabBar.scrollToEnd()
+        this.tabBar && this.tabBar.scrollToEnd();
         return;
       } else {
         offsetX += width / 2;
       }
-      this.tabBar && this.tabBar.scrollTo({ x: offsetX })
+      this.tabBar && this.tabBar.scrollTo({ x: offsetX });
     });
   }
 
@@ -231,7 +231,7 @@ export default class extends PureComponent {
       >
         <Text>{item}</Text>
       </TouchableOpacity>
-    )
+    );
   };
 
   renderContentList = (tabObj, index) => {
@@ -246,11 +246,11 @@ export default class extends PureComponent {
               <View key={`SectionListCell_${key}`} style={styles.listCell}>
                 <Text>{`${tabObj.title}_${key}`}</Text>
               </View>
-            )
+            );
           })}
         </View>
       </View>
-    )
+    );
   };
 
   render() {

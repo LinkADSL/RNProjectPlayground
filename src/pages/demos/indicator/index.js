@@ -12,7 +12,7 @@ import {
   View,
   Animated,
   ScrollView,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 
 const { width: screenW } = Dimensions.get('window');
@@ -21,7 +21,7 @@ const DotMargin = 10;
 
 const styles = StyleSheet.create({
   page: {
-    width: screenW
+    width: screenW,
   },
   indicator: {
     position: 'absolute',
@@ -30,14 +30,14 @@ const styles = StyleSheet.create({
     right: 0,
     height: 20,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   dot: {
     backgroundColor: 'red',
     height: DotWH,
     width: DotWH,
     borderRadius: DotWH / 2,
-    marginRight: DotMargin
+    marginRight: DotMargin,
   },
   animatedDot: {
     height: DotWH,
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     left: 0,
-    borderRadius: DotWH / 2
-  }
+    borderRadius: DotWH / 2,
+  },
 });
 
 export default class extends PureComponent {
@@ -59,13 +59,15 @@ export default class extends PureComponent {
   };
 
   renderPage = (page, index) => (
-    <View key={`Page_${index}`}
-          style={[styles.page, { backgroundColor: `rgba(100,100,100,${index / 10})` }]}/>
+    <View
+      key={`Page_${index}`}
+      style={[styles.page, { backgroundColor: `rgba(100,100,100,${index / 10})` }]}
+    />
   );
 
   renderIndicator = (_, index) => {
     return (
-      <View key={`Indicator_${index}`} style={styles.dot}/>
+      <View key={`Indicator_${index}`} style={styles.dot} />
     );
   };
 
@@ -88,19 +90,19 @@ export default class extends PureComponent {
       widthOutputRange.push(DotWH * 2 + DotMargin);
       widthOutputRange.push(DotWH);
 
-      tranlateXOutputRange.push((DotMargin+DotWH) * index);
-      tranlateXOutputRange.push((DotMargin+DotWH) * (index + 1));
+      tranlateXOutputRange.push((DotMargin + DotWH) * index);
+      tranlateXOutputRange.push((DotMargin + DotWH) * (index + 1));
     });
 
     const width = this.animatedValue.interpolate({
       inputRange,
       outputRange: widthOutputRange,
-      extrapolate: 'clamp'
+      extrapolate: 'clamp',
     });
     const translateX = this.animatedValue.interpolate({
       inputRange,
       outputRange: tranlateXOutputRange,
-      extrapolate: 'clamp'
+      extrapolate: 'clamp',
     });
     return (
       <View style={{ flex: 1 }}>
@@ -117,11 +119,12 @@ export default class extends PureComponent {
             {pages.map(this.renderIndicator)}
             <Animated.View style={[styles.animatedDot, {
               width,
-              transform: [{ translateX }]
-            }]}/>
+              transform: [{ translateX }],
+            }]}
+            />
           </View>
         </View>
       </View>
-    )
+    );
   }
 }

@@ -60,7 +60,9 @@ export default class ImageViewPager extends Component {
     const operateOriginRef = this.originImageRefs[operateIndex];
     operateOriginRef && operateOriginRef.measure((ox, oy, width, height, px, py) => {
       this.setState({
-        origin: {px, py, width, height},
+        origin: {
+          px, py, width, height,
+        },
       }, () => {
         const operateAnimatedRef = this.animatedImageRefs[operateIndex];
         operateAnimatedRef && operateAnimatedRef.close(this.hideViewPager);
@@ -149,7 +151,9 @@ class AnimatedImage extends Component {
         onClick={this.handlePress}
       >
         <Animated.Image
-          style={{height, width, left, top}}
+          style={{
+height, width, left, top,
+}}
           source={{uri: this.props.image.source}}
           resizeMode="contain"
         />

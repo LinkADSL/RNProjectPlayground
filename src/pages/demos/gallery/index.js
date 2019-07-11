@@ -40,7 +40,10 @@ export default class Gallery extends Component {
   render() {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center'}}>
+        <View style={{
+flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center',
+}}
+        >
           {this.imageList.map((image, index) => {
             return (
               <TouchableOpacity

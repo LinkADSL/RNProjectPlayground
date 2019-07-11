@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
   ActivityIndicator,
-} from 'react-native'
+} from 'react-native';
 
 const styles = StyleSheet.create({
   root: {
@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
   text: {
     marginTop: 8,
     fontSize: 14,
-  }
-})
+  },
+});
 
 export default () => {
   return (
@@ -24,5 +24,5 @@ export default () => {
       <ActivityIndicator />
       <Text style={styles.text}>正在加载...</Text>
     </View>
-  )
-}
+  );
+};

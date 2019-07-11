@@ -154,12 +154,12 @@ export default class HeadKing extends Component {
       <View style={styles.root}>
         <View style={styles.content}>
           <Animated.View style={[styles.outCircle, {transform: [{rotate: outRotate}]}]}>
-            <View style={styles.outIndicator}/>
+            <View style={styles.outIndicator} />
           </Animated.View>
           <Animated.View style={[styles.innerCircle, {transform: [{rotate: innerRotate}]}]}>
-            <View style={styles.innerIndicator}/>
+            <View style={styles.innerIndicator} />
           </Animated.View>
-          <View style={styles.avatar}/>
+          <View style={styles.avatar} />
         </View>
         <Text>匹配中……</Text>
       </View>
@@ -199,7 +199,10 @@ class LeftPlayer extends Component {
 
     return (
       <Animated.View style={{transform: [{translateX}], alignItems: 'center', width: 150}}>
-        <View style={{backgroundColor: 'red', height: 100, width: 100, borderRadius: 50}}/>
+        <View style={{
+backgroundColor: 'red', height: 100, width: 100, borderRadius: 50,
+}}
+        />
         <Animated.Text style={{transform: [{scale}], marginTop: 10}}>广州 奥迪</Animated.Text>
       </Animated.View>
     );
@@ -238,7 +241,10 @@ class RightPlayer extends Component {
 
     return (
       <Animated.View style={{transform: [{translateX}], alignItems: 'center', width: 150}}>
-        <View style={{backgroundColor: 'red', height: 100, width: 100, borderRadius: 50}}/>
+        <View style={{
+backgroundColor: 'red', height: 100, width: 100, borderRadius: 50,
+}}
+        />
         <Animated.Text style={{transform: [{scale}], marginTop: 10}}>厦门 奔驰</Animated.Text>
       </Animated.View>
     );

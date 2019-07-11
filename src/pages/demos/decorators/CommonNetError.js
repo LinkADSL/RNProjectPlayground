@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
-} from 'react-native'
-import PropTypes from 'prop-types'
+} from 'react-native';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   root: {
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     marginVertical: 10,
   },
-})
+});
 
 export default class extends PureComponent {
 
@@ -43,6 +43,6 @@ export default class extends PureComponent {
           <Text>重新加载</Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }

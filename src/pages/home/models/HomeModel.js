@@ -16,9 +16,9 @@ const Home = types.model('Home', {
   },
   get isLoadError() {
     return self.state === 'loadError';
-  }
+  },
 })).actions(self => ({
-  fetchData: flow(function*() {
+  fetchData: flow(function* () {
     try {
       const url = 'http://food.boohee.com/fb/v1/categories/list';
       const responseData = yield fetch(url).then(res => res.json());
@@ -37,4 +37,4 @@ const Home = types.model('Home', {
 
 export default {
   setup: () => Home.create(),
-}
+};

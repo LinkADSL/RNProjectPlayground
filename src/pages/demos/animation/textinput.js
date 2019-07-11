@@ -115,7 +115,9 @@ export default class FloatingTextInput extends Component {
       inputRange: [0, 1],
       outputRange: [200, 0],
     });
-    return { bottom, height, fontSize, color, right };
+    return {
+      bottom, height, fontSize, color, right,
+    };
   }
 
   handleFocusInput = () => {
@@ -147,7 +149,9 @@ export default class FloatingTextInput extends Component {
   };
 
   render() {
-    const { bottom, height, fontSize, color, right } = this.buildAnimatedValues;
+    const {
+      bottom, height, fontSize, color, right,
+    } = this.buildAnimatedValues;
     const { placeholder, placeholderTextColor, style } = this.props;
 
     return (

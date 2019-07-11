@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
 import {
   View,
   Text,
@@ -6,10 +6,10 @@ import {
   FlatList,
   Dimensions,
   TouchableOpacity,
-} from 'react-native'
-import { enhanceFetch } from './HOCUtils'
+} from 'react-native';
+import { enhanceFetch } from './HOCUtils';
 
-const { width: screenW } = Dimensions.get('window')
+const { width: screenW } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   root: {
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     right: 0,
     padding: 16,
     justifyContent: 'center',
-  }
-})
+  },
+});
 
 class TargetList extends PureComponent {
 
@@ -60,11 +60,11 @@ class TargetList extends PureComponent {
         {item.group_count && <Text>分组数量：{item.group_count}</Text>}
         {Number.isInteger(item) && <Text>Reload data: {item}</Text>}
       </View>
-    )
+    );
   }
 
   render() {
-    const { data = null } = this.props
+    const { data = null } = this.props;
 
     return (
       <View style={styles.root}>
@@ -89,26 +89,26 @@ class TargetList extends PureComponent {
         </View>
         <View style={styles.prompt}>
           <Text>并发请求示例</Text>
-          <Text>{`1、updateData 更新本地数据\n2、fetchData 重新触发请求\n3、其他：decorator 已处理首屏渲染和网络出错状态`}</Text>
+          <Text>{'1、updateData 更新本地数据\n2、fetchData 重新触发请求\n3、其他：decorator 已处理首屏渲染和网络出错状态'}</Text>
         </View>
       </View>
-    )
+    );
   }
 }
 
 const CustomerLoading = () => {
   return (
     <Text>Customer Loading...</Text>
-  )
-}
+  );
+};
 
 // 进行修饰
-const FinalList = enhanceFetch(TargetList, { loading: CustomerLoading })
+const FinalList = enhanceFetch(TargetList, { loading: CustomerLoading });
 
 export default () => {
   const requestQueues = [
     {url: 'http://food.boohee.com/fb/v1/keywords', options: {}},
-    {url: 'http://food.boohee.com/fb/v1/categories/list', options: {}}
-  ]
-  return <FinalList requestQueues={requestQueues} />
-}
+    {url: 'http://food.boohee.com/fb/v1/categories/list', options: {}},
+  ];
+  return <FinalList requestQueues={requestQueues} />;
+};

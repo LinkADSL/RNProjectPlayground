@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowColor: 'blue',
     shadowOffset: { height: 0, width: 0 },
-  }
+  },
 });
 
 export default class extends Component {
@@ -125,7 +125,9 @@ export default class extends Component {
   handlePressItem = () => this.textInput && this.textInput.focus();
 
   handleChange = password => {
-    const { maxLength, onSubmit, autoSubmit, onChangeText } = this.props;
+    const {
+      maxLength, onSubmit, autoSubmit, onChangeText,
+    } = this.props;
     const { password: oldPassword } = this.state;
 
     if (oldPassword.length === maxLength && password.length === maxLength - 1) {
@@ -175,7 +177,7 @@ export default class extends Component {
         <View style={styles.password}>
           {this.state.passwordArray.map(this.renderPasswordItem)}
         </View>
-        {!hasSubmited && <Animated.View style={[this.animatingBoxStyle, { left }]}/>}
+        {!hasSubmited && <Animated.View style={[this.animatingBoxStyle, { left }]} />}
       </View>
     );
   }

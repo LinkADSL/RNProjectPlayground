@@ -62,7 +62,9 @@ export default class ImageViewPager extends Component {
     const operateOriginRef = this.originImageRefs[operateIndex];
     operateOriginRef && operateOriginRef.measure((ox, oy, width, height, px, py) => {
       this.setState({
-        origin: {px, py, width, height},
+        origin: {
+          px, py, width, height,
+        },
       }, () => {
         this.positionValue.setValue(0);
         Animated.timing(this.animatedValue, {
@@ -117,7 +119,9 @@ export default class ImageViewPager extends Component {
         />
         <Animated.View style={[StyleSheet.absoluteFill, {backgroundColor: 'black', transform: [{translateY}]}]}>
           <AnimatedFastImage
-            style={{height, width, left, top}}
+            style={{
+height, width, left, top,
+}}
             source={{uri: image.source}}
             resizeMode="contain"
           />

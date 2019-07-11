@@ -83,7 +83,11 @@ export default class PathMenuAnimation extends Component {
 
   handleShowOrHideMenu = () => {
     this.actionBtn && this.actionBtn.measure((ox, oy, width, height, px, py) => {
-      this.setState({ origin: { width, height, x: px, y: py } }, () => {
+      this.setState({
+        origin: {
+          width, height, x: px, y: py,
+        },
+      }, () => {
         if (this.isFold) {
           this.spreadMenus();
         } else {
@@ -136,7 +140,7 @@ export default class PathMenuAnimation extends Component {
             toValue: 0,
             duration: 300,
           }),
-        ])
+        ]),
       ]).start(() => {
         this.props.onSelect && this.props.onSelect(index);
         this.resetToDefaultConfig();

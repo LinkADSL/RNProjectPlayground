@@ -75,12 +75,10 @@ export default class Pagination extends PureComponent {
         outputRange: ['#aaa', '#aaa', '#fff', '#aaa', '#aaa'],
       });
 
-      componentArr.push(
-        <Animated.View
-          key={`PaginationItem-${i}`}
-          style={[styles.paginationItem, {transform: [{scale}]}, {backgroundColor}]}
-        />
-      );
+      componentArr.push(<Animated.View
+        key={`PaginationItem-${i}`}
+        style={[styles.paginationItem, {transform: [{scale}]}, {backgroundColor}]}
+      />);
     }
 
     return (
